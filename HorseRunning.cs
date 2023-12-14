@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
+//This script makes the horse/camel bob back and forth creating the illusion of moving forward
 public class HorseRunning : MonoBehaviour
 {
 
