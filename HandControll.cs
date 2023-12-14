@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// this script handles changing the dominant hand based on the setting
 public class HandControll : MonoBehaviour
 {
+    // objects to change
     public GameObject leftBow;
     public GameObject rightBow;
     public GameObject leftArrow;
@@ -14,6 +16,7 @@ public class HandControll : MonoBehaviour
 
     void Start()
     {
+        // if right handed
         if (GameplaySettings.IsRightHanded == true)
         {
             leftBow.SetActive(true);
@@ -23,6 +26,7 @@ public class HandControll : MonoBehaviour
             leftArrow.SetActive(false);
             leftPause.SetActive(false);
         }
+        // if left handed
         else
         {
             leftBow.SetActive(false);
