@@ -9,18 +9,20 @@ public class HorseRunning : MonoBehaviour
 
     public float rotationAmount = 15f;
     public float rotationSpeed = 2f;
-    float initiial_angle = 0f;
+    private float initiial_angle = 0f;
 
 
     private void Start()
     {
+        //store initial angle of the horse
         initiial_angle = gameObject.transform.localEulerAngles.x;
-
     }
+    
     private void Update()
     {
+        //use an occilating function to change the direction of the horse back and forth
         float rotation = Mathf.Sin(Time.time * rotationSpeed) * rotationAmount;
-        transform.rotation = Quaternion.Euler(rotation + initiial_angle, 0f, 0f);
+        transform.rotation = Quaternion.Euler(rotation + initiial_angle, 0f, 0f); //rotate on the x-axis
  
     }
 }
