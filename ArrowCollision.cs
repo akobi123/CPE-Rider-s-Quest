@@ -6,54 +6,41 @@ using UnityEngine.UIElements;
 
 public class ArrowCollision : MonoBehaviour
 {
-    // Start is called before the first frame update
-    bool hit = false;
-
-    private Rigidbody rBody; //or public Rigidbody rBody; 
+    // variabels
+    private Rigidbody rBody; 
     private BoxCollider bCollider;
+    
     void Start()
     {
-        rBody = GetComponent<Rigidbody>();
-        bCollider = GetComponent<BoxCollider>();
+        rBody = GetComponent<Rigidbody>(); //assign rigidbody of the object the script is attached to
+        bCollider = GetComponent<BoxCollider>(); //assign the box collider of the object the script is attached to
     }
     void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.name == "Target1")
         {
-            Debug.Log("Nice Shot");
+            //Debug.Log("Nice Shot");
             ScoreDisplay.instance.addScore(3);
         }
         else if(collision.gameObject.name == "Target2")
         {
-            Debug.Log("Good shot");
+            //Debug.Log("Good shot");
             ScoreDisplay.instance.addScore(2);
         }
         else if (collision.gameObject.name == "Target3")
         {
-            Debug.Log("Shot");
+            //Debug.Log("Shot");
             ScoreDisplay.instance.addScore(1);
         }
-        
-
-        if (!hit)
-        {
-            ArrowStick(collision);
-            hit = true;
-        }
-        try
-        {
-            destroyThis(collision.gameObject.transform.parent.gameObject);
-
-        }
-        catch { }
+        // stick the arrow to the taget
+        ArrowStick(collision);
+        // stop the target, make it drop, and destory once it reaches ground
+        destroyThis(collision.gameObject.transform.parent.gameObject);
     }
     
 
     void ArrowStick(Collider col)
     {
-
-        // move the arrow deep inside the enemy or whatever it sticks to
-        //col.transform.Translate(depth * -Vector2.right);
         // Make the arrow a child of the thing it's stuck to
         transform.parent = col.transform;
 
@@ -69,10 +56,14 @@ public class ArrowCollision : MonoBehaviour
         //Debug.Log(obj.name);
         if(obj.name == "TargetController 1(Clone)")
         {
+            // add rigidbody to the whole thing so it start falling
             obj.AddComponent<Rigidbody>();
-            //obj.AddComponent<DestroyTarget>();
+            // set speed to 0 so it stops moving towards the player
             obj.GetComponent<Move>().moveSpeed = 0;
+            // destroy the vertcal, horizontal, or cirular motion script
             Destroy(obj.GetComponent<MoveTargets>());
+
+            //the object will get destoryed in the Move scipt, when it falls below the ground
         }
     }
 }
