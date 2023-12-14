@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+// this script checks if the arrow hit the target, and then destorys the target
 public class ArrowCollision : MonoBehaviour
 {
     // variabels
