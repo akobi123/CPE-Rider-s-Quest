@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//This script contorls health images on the canvas and detects when the player dies
 public class HealthController : MonoBehaviour
 {
     public Image[] alive; // drag and drop the alive heart image form canvas
