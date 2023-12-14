@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// this script handles controlling the gameplay menu
 public class GameplayMenuControll : MonoBehaviour
 {
+    // the buttons needed to be controlled
     public GameObject easy;
     public GameObject hard;
     public GameObject right;
@@ -14,6 +16,7 @@ public class GameplayMenuControll : MonoBehaviour
 
     void Start()
     {
+        // enable or disable the buttons for dominant hand
         if (GameplaySettings.IsRightHanded == true)
         {
             right.SetActive(true);
@@ -24,6 +27,7 @@ public class GameplayMenuControll : MonoBehaviour
             right.SetActive(false);
             left.SetActive(true);
         }
+        // enable or disable the buttons for the biome
         if (GameplaySettings.IsBobbing == true)
         {
             bobbingOn.SetActive(true);
@@ -34,6 +38,7 @@ public class GameplayMenuControll : MonoBehaviour
             bobbingOn.SetActive(false);
             bobbingOff.SetActive(true);
         }
+        // enable or disable the buttons for difficulty
         if (GameplaySettings.IsEasy == true)
         {
             easy.SetActive(true);
