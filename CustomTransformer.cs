@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 
+// this is the edited one grab translate tranformer
+// needed to handle pulling of the bow's string
 namespace Oculus.Interaction
 {
     /// <summary>
@@ -32,8 +34,8 @@ namespace Oculus.Interaction
                 MaxZ = new FloatConstraint()
             };
 
-        public GameObject objectToHideUnhide;
-        public Vector3 resetCoordinates;
+        public GameObject objectToHideUnhide; // the arrow that needs to appear or disappear
+        public Vector3 resetCoordinates; // the coordinates to reset the arrow to
 
         public OneGrabTranslateConstraints Constraints
         {
@@ -118,7 +120,9 @@ namespace Oculus.Interaction
             Transform targetTransform = _grabbable.Transform;
             _grabOffsetInLocalSpace = targetTransform.InverseTransformVector(
                     grabPoint.position - targetTransform.position);
+            // enable the arrow
             objectToHideUnhide.SetActive(true);
+            // set the state of the string to grabbed
             GrabbedShare.grabbed = true;
         }
 
@@ -171,8 +175,11 @@ namespace Oculus.Interaction
 
         public void EndTransform()
         {
+            // reset the coordinates of the arrow
             _grabbable.Transform.localPosition = resetCoordinates;
+            // disable the arrow
             objectToHideUnhide.SetActive(false);
+            // set the state of string to not grabbed
             GrabbedShare.grabbed = false;
         }
 
