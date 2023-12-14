@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+//This script moves the objects towarsd sthe player. Also can change movemnt for targets using MoveTarget script
 public class Move : MonoBehaviour
 {
     public float moveSpeed = -1f; // Speed at which the object will move
