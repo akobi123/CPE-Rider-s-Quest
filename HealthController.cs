@@ -5,15 +5,16 @@ using UnityEngine.UI;
 
 public class HealthController : MonoBehaviour
 {
-    public Image[] alive;
-    public Image[] dead;
+    public Image[] alive; // drag and drop the alive heart image form canvas
+    public Image[] dead; // draga nd drop dead heart image form canvas
     public static HealthController instance;
     public GameObject pause;
     public GameObject gameOver;
     public GameObject horse;
     private bool aliveCheck = false;
 
-    // Start is called before the first frame update
+    
+    // Awake is done before Start, and the instance makes sure that there is only one copy of the script.
     private void Awake()
     {
         instance = this;
@@ -21,6 +22,7 @@ public class HealthController : MonoBehaviour
 
     void Start()
     {
+        //make sure the alives are turned on and dead turned off in the begining
         for(int i = 0; i < alive.Length; i++)
         {
             alive[i].enabled = true;
@@ -28,15 +30,17 @@ public class HealthController : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+
     public void kill()
     {
-        aliveCheck = false;
+        // go over the whole array
         for (int i = alive.Length-1; i >= 0 ; i--)
         {
-            //Debug.Log(i);
+            //if the alive is turned on, turn it off and turn on the dead image on it's place
+            //The hearts will follow their index in the array (first gets turned off first)
             if(alive[i].enabled == true)
             {
+                // check if the player ran out of lives
                 if (i!=0)
                 {
                     aliveCheck = true;
@@ -45,14 +49,17 @@ public class HealthController : MonoBehaviour
                 alive[i].enabled = false;
                 break;
             }
-
         }
-        if ( aliveCheck == false)
-        {
+
+        //check if the player is dead
+        if (aliveCheck == false)
+        {    
+            //go to game over screen, stop everything else
             pause.SetActive(false);
             gameOver.SetActive(true);
             horse.SetActive(false);
             Time.timeScale = 0f;
         }
+        
     }
 }
