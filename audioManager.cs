@@ -2,17 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// this script handles changing the main volume of the game
 public class audioManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
+        // change the volume from the audio listener to affect all audio
         AudioListener.volume = ((float)(transform.localPosition.x)+(float)(1.5))/(float)(3.0);
     }
 }
